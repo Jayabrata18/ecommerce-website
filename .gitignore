@@ -166,4 +166,4 @@ e2e/*.map
 # System Files
 .DS_Store/
 
-# End of https://www.toptal.com/developers/gitignore/api/mean
+backend/config/keys.js
