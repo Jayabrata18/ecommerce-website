@@ -6,6 +6,7 @@ import {
   ERRORS,
   SUCCESSFUL_LOGIN,
   FAILURE_LOGIN,
+  LOGOUT,
 } from "../actions/types";
 import { isEmpty } from "lodash";
 
@@ -35,7 +36,8 @@ export default function (state = initialState, action) {
       };
     case FAILURE_REGISTER:
     case AUTH_ERROR:
-    case FAILURE_LOGIN:  
+    case FAILURE_LOGIN:
+    case LOGOUT:    
       localStorage.removeItem("token");
       return {
         ...state,

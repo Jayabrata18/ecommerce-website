@@ -4,10 +4,9 @@ import "./App.css";
 import {Provider} from 'react-redux'
 import store from './store'
 import setAuthToken from "./Util/setAuthToken";
-import { setCurrentUser } from './actions/authActions';
+import { login, register, setCurrentUser } from './actions/authActions';
 
-import Navbar from "./components/general/Navbar";
-import Heroproduct from "./components/general/landing/Heroproduct";
+import Landing from './components/general/landing';
 
 if(localStorage.token){
   setAuthToken(localStorage.token); 
@@ -21,7 +20,10 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="app">
-          <Navbar />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/register" component={register} />
+          <Route exact path="/login" component={login} />
+
           {/* <Route exact path="/" component={Heroproduct} /> */}
         </div>
       </Router>
