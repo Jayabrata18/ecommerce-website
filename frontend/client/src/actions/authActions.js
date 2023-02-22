@@ -4,6 +4,8 @@ import {
   FAILURE_REGISTER,
   ERRORS,
   AUTH_ERROR,
+  SUCCESSFUL_LOGIN,
+  FAILURE_LOGIN,
 } from "./types";
 import axios from "axios";
 import setAuthToken from "./../Util/setAuthToken";
@@ -54,4 +56,25 @@ export const register = (userData) => async (dispatch) => {
       });
     }
   }
+};
+
+//login user
+export const login = (userData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.post(`${getServer}/api/auth`, userData, config);
+    dispatch({
+      type: SUCCESSFUL_LOGIN,
+      payload: res.data,
+    });
+  } catch (err) {
+      dispatch({
+        type: FAILURE_LOGIN,
+      });
+    }
+  
 };
