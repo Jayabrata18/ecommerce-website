@@ -1,9 +1,9 @@
 import {
   SET_CURRENT_USER,
   SUCCESSFUL_REGISTER,
-  AUTH_ERROR,
   FAILURE_REGISTER,
   ERRORS,
+  AUTH_ERROR,
   SUCCESSFUL_LOGIN,
   FAILURE_LOGIN,
   LOGOUT,
@@ -11,7 +11,7 @@ import {
 import { isEmpty } from "lodash";
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: localStorage.getItem("token") ? true : false,
   token: localStorage.getItem("token"),
   user: {},
   errors: [],
@@ -37,20 +37,18 @@ export default function (state = initialState, action) {
     case FAILURE_REGISTER:
     case AUTH_ERROR:
     case FAILURE_LOGIN:
-    case LOGOUT:    
+    case LOGOUT:
       localStorage.removeItem("token");
       return {
         ...state,
         token: null,
         isAuthenticated: false,
       };
-
     case ERRORS:
       return {
         ...state,
         errors: payload,
       };
-
     default:
       return state;
   }

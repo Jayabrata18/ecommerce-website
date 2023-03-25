@@ -1,24 +1,24 @@
-import { GET_PRODUCTS, PRODUCT_ERROR, GET_PRODUCT } from "../actions/types";
+import { GET_PROFILE, PROFILE_ERROR, ERRORS } from "../actions/types";
 const initialState = {
-  products: [],
-  product: {},
-  errors: {},
+  profile: null,
+  error: {},
+  errors: [],
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case GET_PRODUCTS:
+    case GET_PROFILE:
       return {
         ...state,
-        products: payload,
+        profile: payload,
       };
-    case GET_PRODUCT:
+    case PROFILE_ERROR:
       return {
         ...state,
-        product: payload,
+        error: payload,
       };
-    case PRODUCT_ERROR:
+    case ERRORS:
       return {
         ...state,
         errors: payload,

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getProducts } from "./../../../actions/productAction";
 import { Card } from "antd";
-import Meta from "antd/es/card/Meta";
+import { getProducts } from "../../actions/productAction";
+import Product from "../general/Product";
+
+const { Meta } = Card;
 
 class Products extends Component {
   constructor(props) {
@@ -14,12 +16,14 @@ class Products extends Component {
   componentDidMount() {
     this.props.getProducts();
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.products.products) {
       const products = nextProps.products.products;
       this.setState({ products });
     }
   }
+
   productDetails = (product) => {
     return (
       <ul>
@@ -30,26 +34,18 @@ class Products extends Component {
   };
   render() {
     const { products } = this.state;
+    // console.log(products);
     return (
-      <div className="container">
+      <div className="container-flex">
         <div className="row">
           {products.map((product, index) => (
-            <Card
+            <Product
               key={index}
-              hoverable
-              style={{ width: 240 }}
-              cover={
-                <img
-                  alt="example"
-                  src="https://thumbs.dreamstime.com/b/bath-beauty-products-24145725.jpg"
-                />
-              }
-            >
-              <Meta
-                title={product.name}
-                description={this.productDetails(product)}
-              />
-            </Card>
+              link={`products/${product._id}`}
+              product={product}
+              description={this.productDetails(product)}
+              thumbnail={product.thumbnail}
+            />
           ))}
         </div>
       </div>

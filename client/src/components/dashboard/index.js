@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Avatar } from "antd";
 import { logout } from "../../actions/authActions";
-import "./dashbord.css";
+import "../../dashboard.css";
 
 class Dashboard extends Component {
   constructor(props) {
